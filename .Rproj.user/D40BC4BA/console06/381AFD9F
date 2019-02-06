@@ -1,0 +1,32 @@
+[0m[0K]0;:/c/Users/schubertj/Documents/github/weatherData[?25l
+[0;32mSchubertJ@KTPRGL0361 [0m[0K[?25h[0;35m [0;33m~/Documents/github/weatherData[0m[0K[?25l
+$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git i[0K[?25hn[0Ki[0Kt[0K[?25l
+bash: git: command not found[0K
+[0K[?25h[?25l
+[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/weatherData[0m[0K
+$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git i[0K[?25hn[0Ki[0Kt[0K[?25l
+[0K[?25hbash: git: command not found[0K[?25l
+[0K
+[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/weatherData[0m[0K
+$[0K[3G[?25h[?25l$ git init[0K[?25h[?25l
+[0K[?25hbash: git: command not found[0K[?25l
+[0K
+[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/weatherData[0m[0K
+]0;:/c/Users/schubertj/Documents/github/weatherData[?25l
+[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/weatherData[0m[0K
+$[0K[3G[?25h[?25l$ ..Documents[0K[?25h[?25l$ ..[0K[?25h[?25l$ ls[0K[?25h[?25l$ cd kantarware[0K[?25h[?25l$ ls[0K[?25h[?25l$ ..[0K[?25hDocuments[0K[?25l$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git i[0K[?25hn[0Ki[0Kt[0K[?25l
+[0K[?25hInitialized empty Git repository in C:/Users/schubertj/Documents/githu[0Kb[?25l
+/weatherData/.git/[0K
+[0K[?25h[?25l
+[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/weatherData[0;36m (master)[0m[0K
+$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git c[0K[?25ho[0Kn[0Kf[0Ki[0Kg[0K[14G[?25l$ git config -[0K[?25h-[0Kg[0Kl[0Ko[0Kb[0Ka[0Kl[0K.[0Ku[0Ks[0Ker[0K[26G[25G[24G[23G[22G[?25l$ git config --globa.user[0K[21G[?25h[22G[?25l$ git config --globauser[0K[21G[?25h[?25l$ git config --globaluser[0K[22G[?25h[?25l$ git config --global user[0K[23G[?25h[24G[25G[26G[27G[?25l$ git config --global user.[0K[?25hn[0Ka[0Km[0Ke[0K[33G[?25l$ git config --global user.name "[0K[?25hs[0Kc[0Kh[0Ku[0Kb[0Ke[0Kr[0Kt[0Kj[0Ka[0Kn[0K"[0K[?25l
+[0K[?25h[?25l
+[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/weatherData[0;36m (master)[0m[0K
+$[0K[3G[?25h[?25l$ git config --global user.name "schubertjan"[0K[?25h[45G[44G[43G[42G[41G[40G[39G[38G[37G[35G[34G[33G[32G[?25l$ git config --global user.nam "schubertjan"[0K[31G[?25h[?25l$ git config --global user.na "schubertjan"[0K[30G[?25h[?25l$ git config --global user.n "schubertjan"[0K[29G[?25h[?25l$ git config --global user. "schubertjan"[0K[28G[?25h[?25l$ git config --global user "schubertjan"[0K[27G[?25h[?25l$ git config --global user. "schubertjan"[0K[28G[?25h[?25l$ git config --global user.e "schubertjan"[0K[29G[?25h[?25l$ git config --global user.em "schubertjan"[0K[30G[?25h[?25l$ git config --global user.em  "schubertjan"[0K[30G[?25h[?25l$ git config --global user.ema "schubertjan"[0K[31G[?25h[?25l$ git config --global user.emai "schubertjan"[0K[32G[?25h[?25l$ git config --global user.email "schubertjan"[0K[33G[?25h[34G[35G[36G[37G[38G[39G[40G[41G[43G[44G[45G[46G[47G[?25l$ git config --global user.email "schubertjan[0K[?25h[?25l$ git config --global user.email "schubertja[0K[?25h[?25l$ git config --global user.email "schubertj[0K[?25h[?25l$ git config --global user.email "schubert[0K[?25h[?25l$ git config --global user.email "schuber[0K[?25h[?25l$ git config --global user.email "schube[0K[?25h[?25l$ git config --global user.email "schub[0K[?25h[?25l$ git config --global user.email "schu[0K[?25h[?25l$ git config --global user.email "sch[0K[?25h[?25l$ git config --global user.email "sc[0K[?25h[?25l$ git config --global user.email "s[0K[?25h[?25l$ git config --global user.email "[0K[?25h[?25l$ git config --global user.email[0K[34G[?25h[?25l$ git config --global user.email "[0K[?25hh[0Ko[0Kn[0Kz[0Ka[0K.[0Ks[0Kc[0Kh[0Ku[0Kb[0Ke[0Kr[0Kt[0K@[0Kg[0Km[0Ka[0Ki[0Kl[0K.[0Kc[0Ko[0Km[0K"[0K[?25l
+[0K[?25h[?25l
+[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/weatherData[0;36m (master)[0m[0K
+$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git a[0K[?25hd[0Kd[0K[11G[?25l$ git add r[0K[?25he[0Km[0Ko[0Kt[0Ke[0K[18G[17G[?25l$ git add remot[0K[?25h[?25l$ git add remo[0K[?25h[?25l$ git add rem[0K[?25h[?25l$ git add re[0K[?25h[?25l$ git add r[0K[?25h[?25l$ git add[0K[11G[?25h[10G[?25l$ git ad[0K[?25h[?25l$ git a[0K[?25h[?25l$ git[0K[7G[?25h[?25l$ git r[0K[?25he[0Km[0Ko[0Kt[0Ke[0K[14G[?25l$ git remote a[0K[?25hd[0Kd[0K[18G[?25l$ git remote add o[0K[?25hr[0Ki[0Kgi[0Kn[0K[25G[?25l$ git remote add origin h[0K[?25ht[0Kt[0Kp[0Ks[0K:[0K/[0K/[0Kg[0Ki[0Kt[0Kh[0Ku[0Kv[0K[?25l$ git remote add origin https://githu[0K[?25hb[0K.[0Kc[0Ko[0Km[0K/[0Ks[0Kc[0Kh[0Ku[0Kb[0Ke[0Kr[0Kt[0Kj[0Ka[0Kn[0K/[0Kw[0Ke[0Ka[0Kh[0Ke[0Kr[0K[?25l$ git remote add origin https://github.com/schubertjan/weahe[0K[?25h[?25l$ git remote add origin https://github.com/schubertjan/weah[0K[?25h[?25l$ git remote add origin https://github.com/schubertjan/wea[0K[?25ht[0Kh[0Ke[0Kr[0KD[0Ka[0Kt[0Ka[0K.[0Kg[0Ki[0Kt[0K[?25l
+[0K[?25h[?25l
+[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/weatherData[0;36m (master)[0m[0K
+$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git a[0K[?25hd[0Kd[0K[11G[?25l$ git add -[0K[?25hA[0K[?25l
+[0K[?25h

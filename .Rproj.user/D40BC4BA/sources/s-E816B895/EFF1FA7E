@@ -1,0 +1,24 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1549038328941.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1559811456",
+    "id" : "EFF1FA7E",
+    "lastKnownWriteTime" : 1549483495,
+    "last_content_update" : 1549485304452,
+    "path" : "~/github/weatherData/weatherAnalysis.Rmd",
+    "project_path" : "weatherAnalysis.Rmd",
+    "properties" : {
+        "cursorPosition" : "35,41",
+        "last_setup_crc32" : "",
+        "scrollLine" : "14",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

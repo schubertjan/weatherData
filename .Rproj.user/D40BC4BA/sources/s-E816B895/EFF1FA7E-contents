@@ -1,0 +1,143 @@
+---
+title: "Analysis Of 10 Years Of Weather Data"
+author: "Jan Schubert"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.width = 10)
+```
+
+First, we create a function that scrapes the weather data from the internet.
+```{r package and function load}
+library(data.table)
+library(rvest)
+
+## SCRAPE
+scrapeWeather <- function(weatherUrl) {
+  #Reading the HTML code from the website
+  webpage <- read_html(weatherUrl)
+  #Using CSS selectors to scrap the title section
+  weather_data_html <- html_nodes(webpage, '.prehled')
+  #Converting the title data to text
+  weather_data <-
+    html_table(weather_data_html, fill = TRUE, header = TRUE)
+  #format to a data.frame
+  weather_data <- as.data.frame(weather_data)
+  #loose the NA rows
+  weather_data <- weather_data[!is.na(weather_data$Stanice),]
+  return(weather_data)
+}
+```
+
+This is the actual data scrape. The first data starts in March 2009. We use data from a weather station in Prague 9, Prosek since this station has collected the most data.
+```{r data scape}
+# url
+seqDates <- seq.Date(from = as.Date("2009-03-01"), 
+                     to = Sys.Date(), 
+                     by = "day")
+seqDates_url <- paste(format(seqDates, format = "%d"), format(seqDates, format = "%m"), format(seqDates, format = "%Y"), sep = "-")
+
+weather_list <- lapply(seqDates_url, function(x) {
+  weatherUrl <- paste0("https://www.in-pocasi.cz/archiv/archiv.php?historie=",x,"&stanice_kraj=14&klima_kraj=14")
+  scrapeWeather(weatherUrl)
+})
+names(weather_list) <- seqDates
+```
+
+```{r data tidy up}
+weatherDat <- lapply(weather_list, function(x) {
+  x[x$Stanice == "Praha 9, Prosek", ]
+})
+weatherDat <- as.data.table(do.call(rbind, weatherDat),keep.rownames = TRUE)
+names(weatherDat)[c(1,3:8)] <- c("Day", "Max.Temperature", "Min.Temperature", "Wind", "Precipitation", "Max.Pressure", "Max.Humidity")
+selCol <- names(weatherDat)[3:8]
+weatherDat[, selCol[1:2] := list(gsub(" °C","",Max.Temperature), gsub(" °C","",Min.Temperature))]
+weatherDat[, selCol[3] := gsub(" km/h","",Wind)]
+weatherDat[, selCol[4] := gsub(" mm","",Precipitation)]
+weatherDat[, selCol[5] := gsub(" hPa","",Max.Pressure)]
+weatherDat[, selCol[6] := gsub("%","",Max.Humidity)]
+weatherDat[, c(selCol) := lapply(.SD, as.numeric), .SDcols = selCol]
+#format date
+weatherDat[, Day := as.Date(Day, format = "%Y-%m-%d")]
+weather_list <- NULL
+```
+
+
+## Overall
+Hypothesis: Temperature is increasing, especially in the last 4 years.
+The chart below shows temperature and precipitation data and looks at the long-term trend in maximum temperature as well as overall daily precipitation.
+```{r plot overview}
+with(weatherDat, plot(Day, Max.Temperature, type = "l", xlab = NA, ylab = NA))
+lines(loess.smooth(weatherDat$Day, weatherDat$Max.Temperature), col = "red")
+lines(weatherDat$Day, weatherDat$Precipitation, col = "blue")
+legend("bottomright", 
+       legend = c("Max.Temperature", "Max.Temperature-trend","Precipitation"),
+       bg="transparent",
+       lty=c(1,1,1),
+       col = c("black", "red", "blue"))
+```
+
+
+## Temperature
+Hypothesis: There is greater variation in temperatures. 
+This chart shows the variation in daily temperatures by year. It looks at median and the lowest and highest 10% temperature. 
+```{r plot temperature}
+yDat <- weatherDat[!(format(Day,format = "%Y")) %in% c("2009", "2019"), 
+                     .(Max10.Temperature = quantile(Max.Temperature, probs = 0.9),
+                     Avg.Temperature = median(Max.Temperature),
+                     Min10.Temperature = min(Max.Temperature, probs = 0.1)),
+                   by = .(Year = format(Day,format = "%Y"))]
+
+plot(1:9, yDat$Avg.Temperature,
+    ylim=range(c(yDat$Min10.Temperature, yDat$Max10.Temperature)),
+    pch=19,
+    ylab = "Temperature (C)", 
+    xlab = NA,
+    xaxt = "n",
+    main = "Median, Lowest and Highest 10% Temperature")
+axis(1,at=1:9,labels = yDat$Year)
+# horizontal error bars
+arrows(x0 = 1:9, 
+       y0 = yDat$Min10.Temperature, 
+       x1 = 1:9, 
+       y1 = yDat$Max10.Temperature, length=0.05, angle=90, code=3)
+```
+
+
+## Precipitation
+Hypothesis1: There is lower overall yearly precipitation. 
+Hypothesis2: In the recent years, the rain has been short and heavy (i.e. if it rains it rains a low for a short period of time)
+```{r plot precipitation}
+#precipitation a year
+yDat <- weatherDat[!(format(Day,format = "%Y")) %in% c("2009", "2019"), 
+                   .(Precipitation = sum(Precipitation)),
+                   by = .(Year = format(Day,format = "%Y"))]
+
+precip_long_term <- yDat[!Year %in% c("2009", "2019"), mean(Precipitation)]
+
+barplot(yDat$Precipitation, 
+        names.arg = yDat$Year,
+        main = "Total Precipitation And Long Term Average",
+        ylab = "mm")
+abline(a = precip_long_term, b = 0, col = "blue")
+
+yDat <- weatherDat[!(format(Day,format = "%Y")) %in% c("2009", "2019")  & Precipitation > 0, 
+                   .(Precipitation = mean(Precipitation)),
+                   by = .(Year = format(Day,format = "%Y"))]
+
+barplot(yDat$Precipitation, 
+        names.arg = yDat$Year,
+        main = "Average Daily Precipitation",
+        ylab = "mm")
+
+weatherDat[Precipitation > 0, Precip_above_longterm := ifelse(Precipitation > mean(Precipitation), TRUE, FALSE)]
+yDat <- weatherDat[!(format(Day,format = "%Y")) %in% c("2009", "2019"), 
+                   .(Precipitation_trend = sum(Precip_above_longterm, na.rm = TRUE)),
+                   by = .(Year = format(Day,format = "%Y"))]
+
+barplot(yDat$Precipitation_trend, 
+        names.arg = yDat$Year,
+        main = "Number of Days with Precipitation Higher Than Long Term Average",
+        ylab = "Count")
+```
