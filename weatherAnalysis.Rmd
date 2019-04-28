@@ -1,17 +1,19 @@
 ---
-title: "Analysis Of 10 Years Of Weather Data"
+title: "Analysis Of Temperatures Data from Prague Klementinum Weather Station"
 author: "Jan Schubert"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, fig.width = 10)
+knitr::opts_chunk$set(echo = FALSE, fig.width = 10, warning = FALSE, message = FALSE)
 ```
 
-First, we create a function that scrapes the weather data from the internet.
 ```{r package and function load}
 library(data.table)
 library(rvest)
+library(strucchange)
+library(highcharter)
+library(xts)
 
 ## SCRAPE
 scrapeWeather <- function(weatherUrl) {
@@ -23,31 +25,35 @@ scrapeWeather <- function(weatherUrl) {
   weather_data <-
     html_table(weather_data_html, fill = TRUE, header = TRUE)
   #format to a data.frame
-  weather_data <- as.data.frame(weather_data)
+  weather_data <- as.data.frame(weather_data[[1]])
   #loose the NA rows
   weather_data <- weather_data[!is.na(weather_data$Stanice),]
   return(weather_data)
 }
 ```
 
-This is the actual data scrape. The first data starts in March 2009. We use data from a weather station in Prague 9, Prosek since this station has collected the most data.
-```{r data scape}
+```{r data scape, eval=FALSE}
 # url
-seqDates <- seq.Date(from = as.Date("2009-03-01"), 
+seqDates <- seq.Date(from = as.Date("1775-01-01"), 
                      to = Sys.Date(), 
                      by = "day")
 seqDates_url <- paste(format(seqDates, format = "%d"), format(seqDates, format = "%m"), format(seqDates, format = "%Y"), sep = "-")
 
-weather_list <- lapply(seqDates_url, function(x) {
-  weatherUrl <- paste0("https://www.in-pocasi.cz/archiv/archiv.php?historie=",x,"&stanice_kraj=14&klima_kraj=14")
-  scrapeWeather(weatherUrl)
-})
+weather_list <- rep(list(NULL),length(seqDates))
 names(weather_list) <- seqDates
+for(i in seq_along(seqDates_url)){
+  tryCatch({
+    weatherUrl <- paste0("https://www.in-pocasi.cz/archiv/archiv.php?historie=",seqDates_url[i],"&stanice_kraj=0&klima_kraj=0#klima")
+  weather_list[[i]] <- scrapeWeather(weatherUrl)
+  },  error=function(e){})
+}
 ```
 
-```{r data tidy up}
+```{r load chached data}
+load("weatherData.Rdata")
+
 weatherDat <- lapply(weather_list, function(x) {
-  x[x$Stanice == "Praha 9, Prosek", ]
+  x[x$Stanice == "Praha - Klementinum", ]
 })
 weatherDat <- as.data.table(do.call(rbind, weatherDat),keep.rownames = TRUE)
 names(weatherDat)[c(1,3:8)] <- c("Day", "Max.Temperature", "Min.Temperature", "Wind", "Precipitation", "Max.Pressure", "Max.Humidity")
@@ -60,84 +66,71 @@ weatherDat[, selCol[6] := gsub("%","",Max.Humidity)]
 weatherDat[, c(selCol) := lapply(.SD, as.numeric), .SDcols = selCol]
 #format date
 weatherDat[, Day := as.Date(Day, format = "%Y-%m-%d")]
-weather_list <- NULL
+#weather_list <- NULL
 ```
 
 
-## Overall
-Hypothesis: Temperature is increasing, especially in the last 4 years.
-The chart below shows temperature and precipitation data and looks at the long-term trend in maximum temperature as well as overall daily precipitation.
-```{r plot overview}
-with(weatherDat, plot(Day, Max.Temperature, type = "l", xlab = NA, ylab = NA))
-lines(loess.smooth(weatherDat$Day, weatherDat$Max.Temperature), col = "red")
-lines(weatherDat$Day, weatherDat$Precipitation, col = "blue")
-legend("bottomright", 
-       legend = c("Max.Temperature", "Max.Temperature-trend","Precipitation"),
-       bg="transparent",
-       lty=c(1,1,1),
-       col = c("black", "red", "blue"))
+## Long Term Trend In Average Yearly Temperature
+We use data from a weather station in Prague Klementinum. The start of the data is in January 1775, the end in December 2017.
+
+The chart below shows the average yearly temperature and a smoothed trend. The temperature has been wobbling between 12 and 13C till the beginning of the 20th century at which point it raises above 13C and stabilizes. It has risen exponentially since the 80s and hit the 14C and 15C marks.
+
+```{r plot yearly}
+weatherDat.yearly <- weatherDat[, .(Max.Temperature = mean(Max.Temperature)), 
+                                 by = .(Year = format(Day, format = "%Y"))]
+weatherDat.yearly[, Year := as.Date(paste0(Year,"-01-01"), format = "%Y-%m-%d")]
+m_loess <- loess(weatherDat.yearly$Max.Temperature ~ seq_along(weatherDat.yearly$Max.Temperature), span = .3)
+Max.Temperature_trend <- predict(m_loess)
+
+Max.Temperature <- ts(data = weatherDat.yearly$Max.Temperature, 
+                            start = as.numeric(format(head(weatherDat.yearly$Year,1), format = "%Y")), 
+                            end = as.numeric(format(tail(weatherDat.yearly$Year,1), format = "%Y")), 
+                            frequency = 1)
+Max.Temperature_trend <- ts(data = Max.Temperature_trend, 
+                            start = as.numeric(format(head(weatherDat.yearly$Year,1), format = "%Y")), 
+                            end = as.numeric(format(tail(weatherDat.yearly$Year,1), format = "%Y")), 
+                            frequency = 1)
+
+hchart(as.xts(Max.Temperature)) %>%
+  hc_add_series(as.xts(Max.Temperature_trend))
+```
+
+## Structural Changes in Average Yearly Temperature
+In this section, we want to test if the recent rise in the average yearly temperature is part of a random process or if (given the data) this increase is unlikely to be due to random changes in the temperature. The statistical test we use looks at significant changes in average temperature over all possible time frames in our time series. We define the length of one time frame to be 20 years which gives us enough stability to capture longer trends in temperature.
+
+
+Using this analysis, we found 4 segments in our temperature data:
+
+1. 1775 till 1836 with an average temperature of 13C
+
+2. 1837 till 1924 with an average temperature of 12.5C
+
+3. 1925 till 1987 with an average temperature of 13.6C
+
+4. 1988 till 2017 with an average temperature of 15C.
+
+There are two interesting observations. One is the obvious sudden increase in the last 30 years (1987 till 2017). The second is the increasing confidence in where a breakpoint is (shown by the red line at the bottom of the chart). Whilst the first breakpoint is likely to happen between the years 1809 to 1836 (an interval of 27 years), the last breakpoint is likely between the years 1983 and 1987, just 4 years. This reflects the decreasing randomness in the temperatures supporting a hypothesis that the temperature in recent years has been systematically increasing.
+
+```{r}
+temperature_brp <- breakpoints(Max.Temperature ~ 1, h = 20)
+
+plot(Max.Temperature, main = "Average Yearly Temprerature - Praha Klementinum")
+lines(fitted(temperature_brp, breaks = length(temperature_brp$breakpoints)), col = 4)
+lines(confint(temperature_brp, breaks = length(temperature_brp$breakpoints)))
 ```
 
 
-## Temperature
-Hypothesis: There is greater variation in temperatures. 
-This chart shows the variation in daily temperatures by year. It looks at median and the lowest and highest 10% temperature. 
-```{r plot temperature}
-yDat <- weatherDat[!(format(Day,format = "%Y")) %in% c("2009", "2019"), 
-                     .(Max10.Temperature = quantile(Max.Temperature, probs = 0.9),
-                     Avg.Temperature = median(Max.Temperature),
-                     Min10.Temperature = min(Max.Temperature, probs = 0.1)),
-                   by = .(Year = format(Day,format = "%Y"))]
+## Distribution of Yearly Temperatures
+The chart below shows the distribution of yearly temperatures. The lines below show the individual years. Lines in red indicate years from the last segment (1988 - 2017). Most of the years are the hottest years ever recorded. In fact, all of the top 10 hottest years are from this era (and 18 of the 20 hottest years).
 
-plot(1:9, yDat$Avg.Temperature,
-    ylim=range(c(yDat$Min10.Temperature, yDat$Max10.Temperature)),
-    pch=19,
-    ylab = "Temperature (C)", 
-    xlab = NA,
-    xaxt = "n",
-    main = "Median, Lowest and Highest 10% Temperature")
-axis(1,at=1:9,labels = yDat$Year)
-# horizontal error bars
-arrows(x0 = 1:9, 
-       y0 = yDat$Min10.Temperature, 
-       x1 = 1:9, 
-       y1 = yDat$Max10.Temperature, length=0.05, angle=90, code=3)
-```
+```{r}
+temperature_seg1 <- Max.Temperature[1:temperature_brp$breakpoints[3]]
+temperature_seg2 <- Max.Temperature[(temperature_brp$breakpoints[3]+1):length(Max.Temperature)]
 
+hist(Max.Temperature, main = "Distribution Of Yearly Temperatures")
+rug(jitter(temperature_seg1, amount = 0.01), col = "black")
+rug(jitter(temperature_seg2, amount = 0.01), col = "red", lwd = 3)
+legend("topright", legend = c("1775 - 1987", "1988 - 2017"), col = c("black", "red"), lty = c(1,1))
 
-## Precipitation
-Hypothesis1: There is lower overall yearly precipitation. 
-Hypothesis2: In the recent years, the rain has been short and heavy (i.e. if it rains it rains a low for a short period of time)
-```{r plot precipitation}
-#precipitation a year
-yDat <- weatherDat[!(format(Day,format = "%Y")) %in% c("2009", "2019"), 
-                   .(Precipitation = sum(Precipitation)),
-                   by = .(Year = format(Day,format = "%Y"))]
-
-precip_long_term <- yDat[!Year %in% c("2009", "2019"), mean(Precipitation)]
-
-barplot(yDat$Precipitation, 
-        names.arg = yDat$Year,
-        main = "Total Precipitation And Long Term Average",
-        ylab = "mm")
-abline(a = precip_long_term, b = 0, col = "blue")
-
-yDat <- weatherDat[!(format(Day,format = "%Y")) %in% c("2009", "2019")  & Precipitation > 0, 
-                   .(Precipitation = mean(Precipitation)),
-                   by = .(Year = format(Day,format = "%Y"))]
-
-barplot(yDat$Precipitation, 
-        names.arg = yDat$Year,
-        main = "Average Daily Precipitation",
-        ylab = "mm")
-
-weatherDat[Precipitation > 0, Precip_above_longterm := ifelse(Precipitation > mean(Precipitation), TRUE, FALSE)]
-yDat <- weatherDat[!(format(Day,format = "%Y")) %in% c("2009", "2019"), 
-                   .(Precipitation_trend = sum(Precip_above_longterm, na.rm = TRUE)),
-                   by = .(Year = format(Day,format = "%Y"))]
-
-barplot(yDat$Precipitation_trend, 
-        names.arg = yDat$Year,
-        main = "Number of Days with Precipitation Higher Than Long Term Average",
-        ylab = "Count")
+head(weatherDat.yearly[order(Max.Temperature, decreasing = TRUE), ], 20)
 ```
