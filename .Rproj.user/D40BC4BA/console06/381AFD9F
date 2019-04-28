@@ -1,204 +1,48 @@
-[0m[0K]0;:/c/Users/schubertj/Documents/github/weatherData[?25l
-[0;32mSchubertJ@KTPRGL0361 [0m[0K[?25h[0;35m [0;33m~/Documents/github/weatherData[0m[0K[?25l
-$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git i[0K[?25hn[0Ki[0Kt[0K[?25l
-bash: git: command not found[0K
-[0K[?25h[?25l
-[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/weatherData[0m[0K
-$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git i[0K[?25hn[0Ki[0Kt[0K[?25l
-[0K[?25hbash: git: command not found[0K[?25l
+[?25ldf_[0K[?25h[?25ldf[0K[?25h[?25ld[0K[?25h[?25l[0K[?25hg[0Ki[0Kt[0K[5G[?25lgit a[0K[?25hd[0Kd[0K[9G[?25lgit add -[0K[?25hA[0K[?25l
+[0K[?25herror: unknown switch `A'[0K[?25l
+usage: git clone [<options>] [--] <repo> [<dir>][0K
 [0K
-[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/weatherData[0m[0K
-$[0K[3G[?25h[?25l$ git init[0K[?25h[?25l
-[0K[?25hbash: git: command not found[0K[?25l
+    -v, --verbose         be more verbose[0K
+    -q, --quiet           be more quiet[0K
+    --progress            force progress reporting[0K
+    -n, --no-checkout     don't create a checkout[0K
+    --bare                create a bare repository[0K
+    --mirror              create a mirror repository (implies bare)[0K
+    -l, --local           to clone from a local repository[0K
+    --no-hardlinks        don't use local hardlinks, always copy[0K
+    -s, --shared          setup as shared repository[0K
+    --recurse-submodules[=<pathspec>][0K
+                          initialize submodules in the clone[0K
+    -j, --jobs <n>        number of submodules cloned in parallel[0K
+    --template <template-directory>[0K
+                          directory from which templates will be used[0K
+    --reference <repo>    reference repository[0K
+    --reference-if-able <repo>[0K
+                          reference repository[0K
+    --dissociate          use --reference only while cloning[0K
+    -o, --origin <name>   use <name> instead of 'origin' to track upstream[0K
+    -b, --branch <branch>[0K
+                          checkout <branch> instead of the remote's HEAD[0K
+    -u, --upload-pack <path>[0K
+                          path to git-upload-pack on the remote[0K
+    --depth <depth>       create a shallow clone of that depth[0K
+    --shallow-since <time>[0K
+                          create a shallow clone since a specific time[0K
+    --shallow-exclude <revision>[0K
+                          deepen history of shallow clone, excluding rev[0K
+    --single-branch       clone only one branch, HEAD or --branch[0K
+    --no-tags             don't clone any tags, and make later fetches not to fol[0Kl
+ow them[0K
+    --shallow-submodules  any cloned submodules will be shallow[0K
+    --separate-git-dir <gitdir>[0K
+                          separate git dir from working tree[0K
+    -c, --config <key=value>[0K
+                          set config inside the new repository[0K
+    -4, --ipv4            use IPv4 addresses only[0K
+    -6, --ipv6            use IPv6 addresses only[0K
+    --filter <args>       object filtering[0K
 [0K
-[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/weatherData[0m[0K
-]0;:/c/Users/schubertj/Documents/github/weatherData[?25l
-[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/weatherData[0m[0K
-$[0K[3G[?25h[?25l$ ..Documents[0K[?25h[?25l$ ..[0K[?25h[?25l$ ls[0K[?25h[?25l$ cd kantarware[0K[?25h[?25l$ ls[0K[?25h[?25l$ ..[0K[?25hDocuments[0K[?25l$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git i[0K[?25hn[0Ki[0Kt[0K[?25l
-[0K[?25hInitialized empty Git repository in C:/Users/schubertj/Documents/githu[0Kb[?25l
-/weatherData/.git/[0K
-[0K[?25h[?25l
-[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/weatherData[0;36m (master)[0m[0K
-$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git c[0K[?25ho[0Kn[0Kf[0Ki[0Kg[0K[14G[?25l$ git config -[0K[?25h-[0Kg[0Kl[0Ko[0Kb[0Ka[0Kl[0K.[0Ku[0Ks[0Ker[0K[26G[25G[24G[23G[22G[?25l$ git config --globa.user[0K[21G[?25h[22G[?25l$ git config --globauser[0K[21G[?25h[?25l$ git config --globaluser[0K[22G[?25h[?25l$ git config --global user[0K[23G[?25h[24G[25G[26G[27G[?25l$ git config --global user.[0K[?25hn[0Ka[0Km[0Ke[0K[33G[?25l$ git config --global user.name "[0K[?25hs[0Kc[0Kh[0Ku[0Kb[0Ke[0Kr[0Kt[0Kj[0Ka[0Kn[0K"[0K[?25l
-[0K[?25h[?25l
-[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/weatherData[0;36m (master)[0m[0K
-$[0K[3G[?25h[?25l$ git config --global user.name "schubertjan"[0K[?25h[45G[44G[43G[42G[41G[40G[39G[38G[37G[35G[34G[33G[32G[?25l$ git config --global user.nam "schubertjan"[0K[31G[?25h[?25l$ git config --global user.na "schubertjan"[0K[30G[?25h[?25l$ git config --global user.n "schubertjan"[0K[29G[?25h[?25l$ git config --global user. "schubertjan"[0K[28G[?25h[?25l$ git config --global user "schubertjan"[0K[27G[?25h[?25l$ git config --global user. "schubertjan"[0K[28G[?25h[?25l$ git config --global user.e "schubertjan"[0K[29G[?25h[?25l$ git config --global user.em "schubertjan"[0K[30G[?25h[?25l$ git config --global user.em  "schubertjan"[0K[30G[?25h[?25l$ git config --global user.ema "schubertjan"[0K[31G[?25h[?25l$ git config --global user.emai "schubertjan"[0K[32G[?25h[?25l$ git config --global user.email "schubertjan"[0K[33G[?25h[34G[35G[36G[37G[38G[39G[40G[41G[43G[44G[45G[46G[47G[?25l$ git config --global user.email "schubertjan[0K[?25h[?25l$ git config --global user.email "schubertja[0K[?25h[?25l$ git config --global user.email "schubertj[0K[?25h[?25l$ git config --global user.email "schubert[0K[?25h[?25l$ git config --global user.email "schuber[0K[?25h[?25l$ git config --global user.email "schube[0K[?25h[?25l$ git config --global user.email "schub[0K[?25h[?25l$ git config --global user.email "schu[0K[?25h[?25l$ git config --global user.email "sch[0K[?25h[?25l$ git config --global user.email "sc[0K[?25h[?25l$ git config --global user.email "s[0K[?25h[?25l$ git config --global user.email "[0K[?25h[?25l$ git config --global user.email[0K[34G[?25h[?25l$ git config --global user.email "[0K[?25hh[0Ko[0Kn[0Kz[0Ka[0K.[0Ks[0Kc[0Kh[0Ku[0Kb[0Ke[0Kr[0Kt[0K@[0Kg[0Km[0Ka[0Ki[0Kl[0K.[0Kc[0Ko[0Km[0K"[0K[?25l
-[0K[?25h[?25l
-[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/weatherData[0;36m (master)[0m[0K
-$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git a[0K[?25hd[0Kd[0K[11G[?25l$ git add r[0K[?25he[0Km[0Ko[0Kt[0Ke[0K[18G[17G[?25l$ git add remot[0K[?25h[?25l$ git add remo[0K[?25h[?25l$ git add rem[0K[?25h[?25l$ git add re[0K[?25h[?25l$ git add r[0K[?25h[?25l$ git add[0K[11G[?25h[10G[?25l$ git ad[0K[?25h[?25l$ git a[0K[?25h[?25l$ git[0K[7G[?25h[?25l$ git r[0K[?25he[0Km[0Ko[0Kt[0Ke[0K[14G[?25l$ git remote a[0K[?25hd[0Kd[0K[18G[?25l$ git remote add o[0K[?25hr[0Ki[0Kgi[0Kn[0K[25G[?25l$ git remote add origin h[0K[?25ht[0Kt[0Kp[0Ks[0K:[0K/[0K/[0Kg[0Ki[0Kt[0Kh[0Ku[0Kv[0K[?25l$ git remote add origin https://githu[0K[?25hb[0K.[0Kc[0Ko[0Km[0K/[0Ks[0Kc[0Kh[0Ku[0Kb[0Ke[0Kr[0Kt[0Kj[0Ka[0Kn[0K/[0Kw[0Ke[0Ka[0Kh[0Ke[0Kr[0K[?25l$ git remote add origin https://github.com/schubertjan/weahe[0K[?25h[?25l$ git remote add origin https://github.com/schubertjan/weah[0K[?25h[?25l$ git remote add origin https://github.com/schubertjan/wea[0K[?25ht[0Kh[0Ke[0Kr[0KD[0Ka[0Kt[0Ka[0K.[0Kg[0Ki[0Kt[0K[?25l
 [0K[?25h[?25l
 [0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/weatherData[0;36m (master)[0m[0K
 $[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git a[0K[?25hd[0Kd[0K[11G[?25l$ git add -[0K[?25hA[0K[?25l
-[0K[?25hwarning: LF will be replaced by CRLF in .Rhistory.[0K[?25l
-The file will have its original line endings in your working directory[0K
-warning: LF will be replaced by CRLF in .Rproj.user/D40BC4BA/pcs/files[0K-
-pane.pper.[0K
-The file will have its original line endings in your working directory[0K
-warning: LF will be replaced by CRLF in .Rproj.user/D40BC4BA/pcs/sourc[0Ke
--pane.pper.[0K
-The file will have its original line endings in your working directory[0K
-warning: LF will be replaced by CRLF in .Rproj.user/D40BC4BA/pcs/windo[0Kw
-layoutstate.pper.[0K
-The file will have its original line endings in your working directory[0K
-warning: LF will be replaced by CRLF in .Rproj.user/D40BC4BA/pcs/workb[0Ke
-nch-pane.pper.[0K
-The file will have its original line endings in your working directory[0K
-warning: LF will be replaced by CRLF in .Rproj.user/D40BC4BA/rmd-outpu[0Kt
-s.[0K
-The file will have its original line endings in your working directory[0K
-[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/D40BC4BA/sources/p[0Kr[?25l
-op/DFCC8A04.[0K
-The file will have its original line endings in your working directory[0K
-warning: LF will be replaced by CRLF in .Rproj.user/D40BC4BA/sources/p[0Kr
-op/INDEX.[0K
-The file will have its original line endings in your working directory[0K
-warning: LF will be replaced by CRLF in .Rproj.user/D40BC4BA/sources/s[0K-
-E816B895/EFF1FA7E.[0K
-The file will have its original line endings in your working directory[0K
-warning: LF will be replaced by CRLF in .Rproj.user/D40BC4BA/sources/s[0K-
-E816B895/EFF1FA7E-contents.[0K
-The file will have its original line endings in your working directory[0K
-warning: LF will be replaced by CRLF in .Rproj.user/shared/notebooks/C[0K9
-5A1D90-weatherAnalysis/1/s/c142cxrkglmbq/000002.csv.[0K
-The file will have its original line endings in your working directory[0K
-warning: LF will be replaced by CRLF in .Rproj.user/shared/notebooks/C[0K9
-5A1D90-weatherAnalysis/1/s/c142cxrkglmbq/000004.csv.[0K
-The file will have its original line endings in your working directory[0K
-warning: LF will be replaced by CRLF in .Rproj.user/shared/notebooks/C[0K9
-5A1D90-weatherAnalysis/1/s/c142cxrkglmbq/000006.csv.[0K
-The file will have its original line endings in your working directory[0K
-warning: LF will be replaced by CRLF in .Rproj.user/shared/notebooks/C[0K9
-5A1D90-weatherAnalysis/1/s/c294eu6h2dfyv/000004.csv.[0K
-The file will have its original line endings in your working directory[0K
-warning: LF will be replaced by CRLF in .Rproj.user/shared/notebooks/C[0K9
-5A1D90-weatherAnalysis/1/s/cf5antxacg6wh/000002.csv.[0K
-The file will have its original line endings in your working directory[0K
-[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/shared/notebooks/C[0K9[?25l
-5A1D90-weatherAnalysis/1/s/csetup_chunk/000002.csv.[0K
-The file will have its original line endings in your working directory[0K
-warning: LF will be replaced by CRLF in .Rproj.user/shared/notebooks/C[0K9
-5A1D90-weatherAnalysis/1/s/cyx212xh48jop/000002.csv.[0K
-The file will have its original line endings in your working directory[0K
-warning: LF will be replaced by CRLF in .Rproj.user/shared/notebooks/p[0Ka
-ths.[0K
-The file will have its original line endings in your working directory[0K
-[0K[?25h[?25l
-[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/weatherData[0;36m (master)[0m[0K
-$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git p[0K[?25hu[0Ks[0Kh[0K[12G[?25l$ git push -[0K[?25hu[0K[15G[?25l$ git push -u o[0K[?25hr[0Ki[0Kg[0Ki[0Kn[0K[22G[?25l$ git push -u origin m[0K[?25ha[0Ks[0Kt[0Ke[0Kr[0K[?25l
-[0K[?25herror: src refspec master does not match any.[0K[?25l
-[0;31merror: failed to push some refs to 'https://github.com/schubertjan/wea[0Kt
-herData.git'[0m[0K
-[0K[?25h[?25l
-[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/weatherData[0;36m (master)[0m[0K
-$[0K[3G[?25h[?25l$ git push -u origin master[0K[?25h[?25l
-[0K[?25herror: src refspec master does not match any.[0K[?25l
-[0;31merror: failed to push some refs to 'https://github.com/schubertjan/wea[0Kt
-herData.git'[0m[0K
-[0K[?25h[?25l
-[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/weatherData[0;36m (master)[0m[0K
-$[0K[3G[?25h[?25l$ gi[0K[?25ht[0K[7G[?25l
-[0K[?25h[?25l
-[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/weatherData[0;36m (master)[0m[0K
-$[0K[3G[?25h[?25l
-[0K[?25h[?25l
-[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/weatherData[0;36m (master)[0m[0K
-$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git c[0K[?25ho[0Km[0Km[0Ki[0Kt[0Kt[0K[?25l$ git commit[0K[?25h[14G[?25l$ git commit -[0K[?25hm[0K[17G[?25l$ git commit -m "[0K[?25hi[0Kn[0Ki[0Kt[0K"[0K[?25l
-[0K[?25h[master (root-commit) 5622fd3] init[0K[?25l
- 37 files changed, 1259 insertions(+)[0K
- create mode 100644 .RData[0K
- create mode 100644 .Rhistory[0K
- create mode 100644 .Rproj.user/D40BC4BA/console06/381AFD9F[0K
- create mode 100644 .Rproj.user/D40BC4BA/console06/INDEX001[0K
- create mode 100644 .Rproj.user/D40BC4BA/pcs/files-pane.pper[0K
- create mode 100644 .Rproj.user/D40BC4BA/pcs/source-pane.pper[0K
- create mode 100644 .Rproj.user/D40BC4BA/pcs/windowlayoutstate.pper[0K
- create mode 100644 .Rproj.user/D40BC4BA/pcs/workbench-pane.pper[0K
- create mode 100644 .Rproj.user/D40BC4BA/rmd-outputs[0K
- create mode 100644 .Rproj.user/D40BC4BA/saved_source_markers[0K
- create mode 100644 .Rproj.user/D40BC4BA/sources/prop/DFCC8A04[0K
- create mode 100644 .Rproj.user/D40BC4BA/sources/prop/INDEX[0K
- create mode 100644 .Rproj.user/D40BC4BA/sources/s-E816B895/EFF1FA7E[0K
- create mode 100644 .Rproj.user/D40BC4BA/sources/s-E816B895/EFF1FA7E-c[0Ko
-ntents[0K
- create mode 100644 .Rproj.user/D40BC4BA/sources/s-E816B895/lock_file[0K
- create mode 100644 .Rproj.user/shared/notebooks/C95A1D90-weatherAnaly[0Ks
-is/1/D40BC4BAB64073E9/chunks.json[0K
- create mode 100644 .Rproj.user/shared/notebooks/C95A1D90-weatherAnaly[0Ks
-is/1/D40BC4BAD3C513EB/chunks.json[0K
- create mode 100644 .Rproj.user/shared/notebooks/C95A1D90-weatherAnaly[0Ks
-is/1/D40BC4BAE816B895/chunks.json[0K
- create mode 100644 .Rproj.user/shared/notebooks/C95A1D90-weatherAnaly[0Ks
-is/1/s/c142cxrkglmbq/000002.csv[0K
- create mode 100644 .Rproj.user/shared/notebooks/C95A1D90-weatherAnaly[0Ks
-is/1/s/c142cxrkglmbq/000004.csv[0K
- create mode 100644 .Rproj.user/shared/notebooks/C95A1D90-weatherAnaly[0Ks
-is/1/s/c142cxrkglmbq/000006.csv[0K
- create mode 100644 .Rproj.user/shared/notebooks/C95A1D90-weatherAnaly[0Ks
-is/1/s/c142cxrkglmbq/000007.metadata[0K
- create mode 100644 .Rproj.user/shared/notebooks/C95A1D90-weatherAnaly[0Ks
-is/1/s/c142cxrkglmbq/000007.png[0K
- create mode 100644 .Rproj.user/shared/notebooks/C95A1D90-weatherAnaly[0Ks
-is/1/s/c142cxrkglmbq/000007.snapshot[0K
- create mode 100644 .Rproj.user/shared/notebooks/C95A1D90-weatherAnaly[0Ks
-is/1/s/c294eu6h2dfyv/000004.csv[0K
- create mode 100644 .Rproj.user/shared/notebooks/C95A1D90-weatherAnaly[0Ks
-is/1/s/cf5antxacg6wh/000002.csv[0K
- create mode 100644 .Rproj.user/shared/notebooks/C95A1D90-weatherAnaly[0Ks
-is/1/s/chunks.json[0K
- create mode 100644 .Rproj.user/shared/notebooks/C95A1D90-weatherAnaly[0Ks
-is/1/s/clclq01aqz5h9/00001b.metadata[0K
- create mode 100644 .Rproj.user/shared/notebooks/C95A1D90-weatherAnaly[0Ks
-is/1/s/clclq01aqz5h9/00001b.png[0K
- create mode 100644 .Rproj.user/shared/notebooks/C95A1D90-weatherAnaly[0Ks
-is/1/s/clclq01aqz5h9/00001b.snapshot[0K
- create mode 100644 .Rproj.user/shared/notebooks/C95A1D90-weatherAnaly[0Ks
-is/1/s/csetup_chunk/000002.csv[0K
- create mode 100644 .Rproj.user/shared/notebooks/C95A1D90-weatherAnaly[0Ks
-is/1/s/cyx212xh48jop/000002.csv[0K
- create mode 100644 .Rproj.user/shared/notebooks/patch-chunk-names[0K
- create mode 100644 .Rproj.user/shared/notebooks/paths[0K
- create mode 100644 weatherAnalysis.Rmd[0K
- create mode 100644 weatherAnalysis.html[0K
- create mode 100644 weatherData.Rproj[0K
-[0K[?25h[?25l
-[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/weatherData[0;36m (master)[0m[0K
-$[0K[3G[?25h[?25l$ git commit -m "init"[0K[?25h[?25l$ git push -u origin master[0K[?25h[?25l
-[0K[?25hLogon failed, use ctrl+c to cancel basic credential prompt.[0K[?25l
-[0K[?25herror: cannot spawn rpostback-askpass: No such file or directory[0K[?25l
-[0K[?25hUsername for 'https://github.com':[0K[36G[?25lUsername for 'https://github.com': h[0K[?25ho[0Kn[0Kz[0Ka[0K.[0Ks[0Kc[0Kh[0Ku[0Kb[0Ke[0Kr[0Kt[0K@[0Kg[0Km[0Ka[0Ki[0Kl[0K.[0Kc[0Ko[0Km[0K[?25l
-error: cannot spawn rpostback-askpass: No such file or directory[0K
-[0K[?25hPassword for 'https://honza.schubert@gmail.com@github.com':[0K[61G[?25l
-[0K[?25hEnumerating objects: 56, done.[0K[?25l
-Counting objects: 100% (56/56), done.[0K
-Delta compression using up to 4 threads[0K
-Compressing objects:  54% (23/42)[0K[1G[?25hCompressing objects: 100% (42/42), done.[0K[?25l
-Writing objects:  75% (42/56)[0K[1G[?25h[?25lWriting objects:  96% (54/56)[0K[1G[?25hWriting objects: 100% (56/56), 535.81 KiB | 7.65 MiB/s, done.[0K[?25l
-Total 56 (delta 4), reused 0 (delta 0)[0K
-[0K[?25hremote: Resolving deltas: 100% (4/4), done.[0K[?25l
-[0K[?25hTo https://github.com/schubertjan/weatherData.git[0K[?25l
- * [new branch]      master -> master[0K
-[0K[?25hBranch 'master' set up to track remote branch 'master' from 'origin'.[0K[?25l
-[0K[?25h[?25l
-[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/weatherData[0;36m (master)[0m[0K
-]0;:/c/Users/schubertj/Documents/github/weatherData[?25l
-[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/weatherData[0;36m (master)[0m[0K
-$[0K[3G[?25h[?25l$ git clone https://kantarware.visualstudio.com/KT-Innovation[0K
-DataScience/_git/dlmdf_enhanced[0K[?25h[?25l[1A$ cd kantarware[0K
-[0K[1A[16G[?25h[?25l$ cd Documents[0K
-[0K[1A[15G[?25h[6n[?25l$ cd[0K
-[0K[1A[6G[?25h[5G[?25l$[0K
-[0K[1A[3G[?25h[?25l$ a[0K
-[0K[1A[4G[?25h[?25l$ ad[0K
-[0K[1A[5G[?25h[?25l$ add[0K
-[0K[1A[6G[?25h[?25l$ ad[0K
-[0K[1A[5G[?25h[?25l$ a[0K
-[0K[1A[4G[?25h[?25l$[0K
-[0K[1A[3G[?25h[?25l$ g[0K
-[0K[1A[4G[?25h[?25l$ gi[0K
-[0K[1A[5G[?25h[?25l$ git[0K
-[0K[1A[6G[?25h[7G[?25l$ git a[0K
-[0K[1A[8G[?25h[?25l$ git ad[0K
-[0K[1A[9G[?25h[?25l$ git add[0K
-[0K[1A[10G[?25h[11G[?25l$ git add -[0K
-[0K[1A[12G[?25h[?25l$ git add -A[0K
-[0K[1A[13G[?25h
+[0K[?25h

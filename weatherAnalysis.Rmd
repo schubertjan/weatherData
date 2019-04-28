@@ -1,8 +1,10 @@
 ---
-title: "Analysis Of Temperatures Data from Prague Klementinum Weather Station"
+title: "Analysis Of Temperature Data from Prague Klementinum Weather Station"
 author: "Jan Schubert"
 output: html_document
 ---
+## About The Data
+This data comes from Prague Klementinum weather station which is the oldest weather station in CZ and contains daily weather data from 1 January 1775 until 31 December 2017.
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, fig.width = 10, warning = FALSE, message = FALSE)
@@ -14,6 +16,7 @@ library(rvest)
 library(strucchange)
 library(highcharter)
 library(xts)
+library(forecast)
 
 ## SCRAPE
 scrapeWeather <- function(weatherUrl) {
@@ -71,8 +74,6 @@ weatherDat[, Day := as.Date(Day, format = "%Y-%m-%d")]
 
 
 ## Long Term Trend In Average Yearly Temperature
-We use data from a weather station in Prague Klementinum. The start of the data is in January 1775, the end in December 2017.
-
 The chart below shows the average yearly temperature and a smoothed trend. The temperature has been wobbling between 12 and 13C till the beginning of the 20th century at which point it raises above 13C and stabilizes. It has risen exponentially since the 80s and hit the 14C and 15C marks.
 
 ```{r plot yearly}
@@ -120,7 +121,7 @@ lines(confint(temperature_brp, breaks = length(temperature_brp$breakpoints)))
 ```
 
 
-## Distribution of Yearly Temperatures
+## Distribution of Yearly Temperature Data
 The chart below shows the distribution of yearly temperatures. The lines below show the individual years. Lines in red indicate years from the last segment (1988 - 2017). Most of the years are the hottest years ever recorded. In fact, all of the top 10 hottest years are from this era (and 18 of the 20 hottest years).
 
 ```{r}
@@ -133,4 +134,65 @@ rug(jitter(temperature_seg2, amount = 0.01), col = "red", lwd = 3)
 legend("topright", legend = c("1775 - 1987", "1988 - 2017"), col = c("black", "red"), lty = c(1,1))
 
 head(weatherDat.yearly[order(Max.Temperature, decreasing = TRUE), ], 20)
+```
+
+
+## How (Un)likely Is This Increase (aka another way to analyze the same thing)
+Another way to test the likelihood of such increase in temperature is to train a model on the first three segments and compare the forecasted data with the real temperatures in the last segment (1987 - 2017). The real temperature exceeds the 95% confidence interval in 9 years, or in 30% of the forecasted cases. This is unlikely to happen due to a random fluctuation in the yearly temperatures and suggest that the underlying process behind the yearly temperatures has changed in the last 30 years.
+
+```{r}
+train <- ts(Max.Temperature[weatherDat.yearly$Year < as.Date("1988-01-01")], 
+            start = 1775,
+            end = 1987,
+            frequency = 1)
+test <- ts(Max.Temperature[weatherDat.yearly$Year >= as.Date("1988-01-01")], 
+            start = 1988,
+            end = 2017,
+            frequency = 1)
+m <- auto.arima(train)
+fit <- forecast(m, h = length(test))
+plot(fit, 
+     ylim = c(min(Max.Temperature), max(Max.Temperature)))
+lines(Max.Temperature)
+
+paste0("% outside the predicted 95% confidence interval - ", round(sum(test < fit$lower[, 2] | test > fit$upper[, 2])/length(test), 3)*100,"%")
+```
+
+
+If we conduct the same analysis comparing the first (1775 - 1836) and the second segment (1837 - 1924) we don't find such a systematic difference in temperature. The actual temperature in the second segment is outside the 95% confidence interval in about 6% of cases, as much as we would expect by random chance.
+```{r}
+train <- ts(Max.Temperature[weatherDat.yearly$Year < as.Date("1837-01-01")], 
+            start = 1775,
+            end = 1836,
+            frequency = 1)
+test <- ts(Max.Temperature[weatherDat.yearly$Year >= as.Date("1837-01-01") & weatherDat.yearly$Year < as.Date("1925-01-01")], 
+            start = 1837,
+            end = 1924,
+            frequency = 1)
+m <- auto.arima(train)
+fit <- forecast(m, h = length(test))
+plot(fit, 
+     ylim = c(min(Max.Temperature), max(Max.Temperature)))
+lines(test)
+
+paste0("% outside the predicted 95% confidence interval - ", round(sum(test < fit$lower[, 2] | test > fit$upper[, 2])/length(test), 3)*100,"%")
+```
+
+
+## How Often Can I Wear That Nice Spring Coat
+Do you also own a coat that you can only wear if it is not too hot and not too cold (just between 20 and 15C) so only in a very short period in spring and autumn? Do you think screw climate change at least I get to wear my favorite coat more often? Too bad, you don't. The number of days in a year when the maximal temperature is between 20 and 15 has been decreasing. One more reason to fight climate change!
+
+```{r}
+wearThatCoat <- weatherDat[, .(n = sum(Max.Temperature <= 20 & Max.Temperature >= 15)), 
+                           by = .(Year = format(Day, format = "%Y"))]
+
+wearThatCoat[, Year := as.Date(paste0(Year,"-01-01"))]
+m_loess <- loess(wearThatCoat$n ~ seq_along(wearThatCoat$n), span = .3)
+n_loess <- ts(predict(m_loess),
+              start = 1775,
+              end = 2017,
+              frequency = 1)
+hchart(wearThatCoat, "column", hcaes(x = Year, y = n)) %>%
+  hc_add_series_ts(n_loess) %>% 
+  hc_title(text = "Number Of Days Max Temperature between 20 and 15C")
 ```
